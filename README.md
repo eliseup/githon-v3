@@ -1,13 +1,7 @@
 # githon
 
-[![Current version at PyPI](https://img.shields.io/pypi/v/githon.svg)](https://pypi.python.org/pypi/githon)
 ![Supported Python Versions](https://img.shields.io/pypi/pyversions/githon.svg)
 ![Software status](https://img.shields.io/pypi/status/githon.svg)
-[![PyPI](https://img.shields.io/pypi/l/githon.svg)]()
-[![GitHub issues](https://img.shields.io/github/issues/marcosvbras/githon.svg)]()
-[![GitHub forks](https://img.shields.io/github/forks/marcosvbras/githon.svg?style=social&label=Fork)]()
-[![GitHub stars](https://img.shields.io/github/stars/marcosvbras/githon.svg?style=social&label=Stars)]()
-[![Donate](https://img.shields.io/gratipay/marcosvbras.svg?style=social&label=Donate)](https://www.gratipay.com/marcosvbras)
 
 **Githon** is a python library that provides a GitHub REST API v3 Data Scraping.
 
