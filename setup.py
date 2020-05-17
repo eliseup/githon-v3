@@ -9,13 +9,13 @@ requirements = open('requirements.pip').read().splitlines()
 
 kw = dict(
     name = 'githon',
-    version = '0.7.0',
+    version = '0.8.0',
     description = 'A simple Data Scraping library for GitHub REST API v3',
     long_description = open('README.md', 'r').read(),
     author = 'Marcos Vinícius Brás',
     author_email = 'marcosvbras@gmail.com',
-    url = 'https://github.com/marcosvbras/githon',
-    download_url = 'https://github.com/marcosvbras/githon',
+    url = 'https://github.com/eliseup/githon-v3',
+    download_url = 'https://github.com/eliseup/githon-v3',
     license='Apache',
     py_modules = ['githon'],
     packages=['githon'],

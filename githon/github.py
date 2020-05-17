@@ -66,8 +66,9 @@ class GithubApi(BaseRequest):
             dict: The profile emails data.
 
         """
-        url = "{0}/user/emails?access_token={1}"
-        response = requests.get(url.format(self.ROOT_API_URL, access_token))
+        url = "{0}/user/emails"
+        headers = {'Authorization': 'token '.format(access_token)}
+        response = requests.get(url.format(self.ROOT_API_URL), headers=headers)
         remaining = int(response.headers['X-RateLimit-Remaining'])
 
         if response.status_code == requests.codes.forbidden and remaining == 0:
@@ -265,21 +266,17 @@ class GithubApi(BaseRequest):
             dict: A dictionary with Github profile data.
 
         """
-        url = "{0}/{1}/{2}{3}"
-        headers = None
+        url = "{0}/{1}/{2}"
+
         data = {}
         access_token = self.get_token(access_token)
-        token_arg = ''
-
-        if access_token != '':
-            token_arg = "?access_token={}".format(access_token)
+        headers = {'Authorization': 'token '.format(access_token)}
 
         if last_modified_date:
-            headers = self.get_last_modified_header(last_modified_date)
+            headers.update(self.get_last_modified_header(last_modified_date))
 
         response = requests.get(
-            url.format(self.ROOT_API_URL, kind, user, token_arg),
-            headers=headers)
+            url.format(self.ROOT_API_URL, kind, user), headers=headers)
 
         self._check_status_code(response, user, access_token)
 
@@ -301,15 +298,15 @@ class GithubApi(BaseRequest):
             dict: A dictionary with requested data.
 
         """
-        url = "{0}/{1}/{2}/{3}{4}"
+        url = "{0}/{1}/{2}/{3}"
+
         access_token = self.get_token(access_token)
-        token_arg = ''
+        headers = {'Authorization': 'token '.format(access_token)}
 
-        if access_token != '':
-            token_arg = "?access_token={}".format(access_token)
-
-        response = requests.get(url.format(
-            self.ROOT_API_URL, kind, user, complement, token_arg))
+        response = requests.get(
+            url.format(
+                self.ROOT_API_URL, kind, user, complement, headers=headers)
+        )
 
         self._check_status_code(response, user, access_token)
 
@@ -350,17 +347,13 @@ class GithubApi(BaseRequest):
         """
         # repos:>=1
         access_token = self.get_token(access_token)
-        token_arg = ''
+        headers = {'Authorization': 'token '.format(access_token)}
 
-        if access_token != '':
-            token_arg = "&access_token={}".format(access_token)
-
-        url = "{0}/search/users?{1}{2}"
+        url = "{0}/search/users?{1}"
 
         response = requests.get(
             url.format(
-                self.ROOT_API_URL, self.encode_parameters(parameters),
-                token_arg
+                self.ROOT_API_URL, self.encode_parameters(parameters), headers=headers
             )
         )
 

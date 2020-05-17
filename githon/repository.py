@@ -22,15 +22,12 @@ class RepositoryApi(BaseRequest):
 
     def repository_by_id(self, repository_id, access_token=None):
         """Return a repository with given repository ID."""
-        url = "{0}/repositories/{1}{2}"
+        url = "{0}/repositories/{1}"
         access_token = self.get_token(access_token)
-        token_arg = ''
-
-        if access_token != '':
-            token_arg = "?access_token={}".format(access_token)
+        headers = {'Authorization': 'token '.format(access_token)}
 
         response = requests.get(
-            url.format(self.ROOT_API_URL, repository_id, token_arg))
+            url.format(self.ROOT_API_URL, repository_id), headers=headers)
 
         self._check_common_status_code(response, access_token)
 
@@ -41,16 +38,13 @@ class RepositoryApi(BaseRequest):
 
     def repository_by_name(self, username, repository_name, access_token=None):
         """Return a repository with given repository_name and username."""
-        url = "{0}/repos/{1}/{2}{3}"
+        url = "{0}/repos/{1}/{2}"
         access_token = self.get_token(access_token)
-        token_arg = ''
-
-        if access_token != '':
-            token_arg = "?access_token={}".format(access_token)
+        headers = {'Authorization': 'token '.format(access_token)}
 
         response = requests.get(
             url.format(
-                self.ROOT_API_URL, username, repository_name, token_arg)
+                self.ROOT_API_URL, username, repository_name), headers=headers
         )
 
         self._check_common_status_code(response, access_token)
@@ -383,17 +377,13 @@ class RepositoryApi(BaseRequest):
             repository_name: An existent user's repository name.
             access_token: GitHub OAuth2 access token.
         """
-        url = "{0}/repos/{1}/{2}/{3}{4}"
+        url = "{0}/repos/{1}/{2}/{3}"
         access_token = self.get_token(access_token)
-        token_arg = ''
-
-        if access_token != '':
-            token_arg = "?access_token={}".format(access_token)
+        headers = {'Authorization': 'token '.format(access_token)}
 
         response = requests.get(
             url.format(
-                self.ROOT_API_URL, username, repository_name, complement,
-                token_arg
+                self.ROOT_API_URL, username, repository_name, complement, headers=headers
             )
         )
 
@@ -413,15 +403,12 @@ class RepositoryApi(BaseRequest):
             complement: A resource to be requested.
             access_token: GitHub OAuth2 access token.
         """
-        url = "{0}/repositories/{1}/{2}{3}"
+        url = "{0}/repositories/{1}/{2}"
         access_token = self.get_token(access_token)
-        token_arg = ''
-
-        if access_token != '':
-            token_arg = "?access_token={}".format(access_token)
+        headers = {'Authorization': 'token '.format(access_token)}
 
         response = requests.get(
-            url.format(self.ROOT_API_URL, repository_id, complement, token_arg))
+            url.format(self.ROOT_API_URL, repository_id, complement), headers=headers)
 
         self._check_common_status_code(response, access_token)
 

@@ -21,8 +21,9 @@ class BaseRequest:
             int: The amount of remaining requests for a given access_token.
 
         """
-        url = "{0}/rate_limit?access_token={1}"
-        response = requests.get(url.format(self.ROOT_API_URL, access_token))
+        url = "{0}/rate_limit"
+        headers = {'Authorization': 'token '.format(access_token)}
+        response = requests.get(url.format(self.ROOT_API_URL), headers=headers)
         data = response.json()
         return data['resources']['core'].get("remaining")
 
