@@ -24,7 +24,7 @@ class RepositoryApi(BaseRequest):
         """Return a repository with given repository ID."""
         url = "{0}/repositories/{1}"
         access_token = self.get_token(access_token)
-        headers = {'Authorization': 'token '.format(access_token)}
+        headers = {'Authorization': 'token {0}'.format(access_token)}
 
         response = requests.get(
             url.format(self.ROOT_API_URL, repository_id), headers=headers)
@@ -40,7 +40,7 @@ class RepositoryApi(BaseRequest):
         """Return a repository with given repository_name and username."""
         url = "{0}/repos/{1}/{2}"
         access_token = self.get_token(access_token)
-        headers = {'Authorization': 'token '.format(access_token)}
+        headers = {'Authorization': 'token {0}'.format(access_token)}
 
         response = requests.get(
             url.format(
@@ -379,7 +379,7 @@ class RepositoryApi(BaseRequest):
         """
         url = "{0}/repos/{1}/{2}/{3}"
         access_token = self.get_token(access_token)
-        headers = {'Authorization': 'token '.format(access_token)}
+        headers = {'Authorization': 'token {0}'.format(access_token)}
 
         response = requests.get(
             url.format(
@@ -405,7 +405,7 @@ class RepositoryApi(BaseRequest):
         """
         url = "{0}/repositories/{1}/{2}"
         access_token = self.get_token(access_token)
-        headers = {'Authorization': 'token '.format(access_token)}
+        headers = {'Authorization': 'token {0}'.format(access_token)}
 
         response = requests.get(
             url.format(self.ROOT_API_URL, repository_id, complement), headers=headers)

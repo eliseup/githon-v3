@@ -22,7 +22,7 @@ class BaseRequest:
 
         """
         url = "{0}/rate_limit"
-        headers = {'Authorization': 'token '.format(access_token)}
+        headers = {'Authorization': 'token {0}'.format(access_token)}
         response = requests.get(url.format(self.ROOT_API_URL), headers=headers)
         data = response.json()
         return data['resources']['core'].get("remaining")

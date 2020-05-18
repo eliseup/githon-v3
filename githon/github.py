@@ -67,7 +67,7 @@ class GithubApi(BaseRequest):
 
         """
         url = "{0}/user/emails"
-        headers = {'Authorization': 'token '.format(access_token)}
+        headers = {'Authorization': 'token {0}'.format(access_token)}
         response = requests.get(url.format(self.ROOT_API_URL), headers=headers)
         remaining = int(response.headers['X-RateLimit-Remaining'])
 
@@ -270,7 +270,7 @@ class GithubApi(BaseRequest):
 
         data = {}
         access_token = self.get_token(access_token)
-        headers = {'Authorization': 'token '.format(access_token)}
+        headers = {'Authorization': 'token {0}'.format(access_token)}
 
         if last_modified_date:
             headers.update(self.get_last_modified_header(last_modified_date))
@@ -301,7 +301,7 @@ class GithubApi(BaseRequest):
         url = "{0}/{1}/{2}/{3}"
 
         access_token = self.get_token(access_token)
-        headers = {'Authorization': 'token '.format(access_token)}
+        headers = {'Authorization': 'token {0}'.format(access_token)}
 
         response = requests.get(
             url.format(
@@ -347,7 +347,7 @@ class GithubApi(BaseRequest):
         """
         # repos:>=1
         access_token = self.get_token(access_token)
-        headers = {'Authorization': 'token '.format(access_token)}
+        headers = {'Authorization': 'token {0}'.format(access_token)}
 
         url = "{0}/search/users?{1}"
 
